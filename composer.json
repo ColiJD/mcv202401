@@ -2,8 +2,7 @@
     "autoload": {
       "psr-4": {"":"src/"}
     },
-    "require": {
-        "phpdocumentor/phpdocumentor": "^3.0",
+    "require": { 
         "wikimedia/less.php": "^3.1.0",
         "paypal/paypal-checkout-sdk": "1.0.1"
     },
