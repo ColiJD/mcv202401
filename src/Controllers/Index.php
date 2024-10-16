@@ -30,6 +30,7 @@ class Index extends PublicController
     public function run() :void
     {
         $viewData = array();
+        // $viewData["carwash_view_hambur"] = $this->isFeatureAutorized("carwash_view_hambur");
         \Views\Renderer::render("index", $viewData);
     }
 }

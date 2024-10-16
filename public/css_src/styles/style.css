@@ -1,0 +1,43 @@
+@import "lista.css";
+@import "header1.css";
+@import "login.css";
+@import "footer.css";
+
+/* Variables */
+:root {
+    --primary-text: #f2f6fa;
+    --primary-bg: #e5b11e;
+    --primary-bg300: #4873aa;
+    --primary-bg800: #42a43e;
+    --primary-bg800-text: #fff;
+
+    --secondary-text: #000;
+    --secondary-bg: #e0da9f;
+    --secondary-bg300: #9cc4ae;
+    --secondary-bg800: #849dc7;
+
+    --primary-action-bg: #25a8ff;
+    --primary-action-tx: #000;
+    --secondary-action-bg: #0084ff;
+    --secondary-action-txt: #000;
+
+    --alert: #c21010;
+    --warning: #bb980d;
+    --info: #3236ae;
+}
+
+
+/* Aquí puedes agregar más estilos CSS */
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  main {
+    flex: 1;
+    margin: 0;
+    padding: 0; /* Esto asegura que el contenido principal ocupe el espacio disponible */
+  }

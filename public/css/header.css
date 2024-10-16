@@ -1,0 +1,91 @@
+/* Variables */
+:root {
+    --menu-width: 35px;
+    --menu-height: 24px;
+    --hamburger-height: 4px;
+    --hamburger-color: #333;
+    --transition-duration: 0.3s;
+    --border-radius: 2px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #4873aa;
+    border-bottom: 5px solid #e5b11e;
+}
+
+.toggle_menu {
+    display: none;
+}
+
+.toggle_menu_icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: var(--menu-width);
+    height: var(--menu-height);
+    cursor: pointer;
+}
+
+.toggle_menu_icon .hamburger {
+    width: 100%;
+    height: var(--hamburger-height);
+    background-color: var(--hamburger-color);
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-duration) ease-in-out;
+}
+
+.toggle_menu_icon .hamburger.line-1 {
+    transform-origin: top left;
+}
+
+.toggle_menu_icon .hamburger.line-2 {
+    transform-origin: center;
+}
+
+.toggle_menu_icon .hamburger.line-3 {
+    transform-origin: bottom left;
+}
+
+/* Estado del menú cuando el checkbox está marcado */
+#toggle_menu:checked~.toggle_menu_icon .line-1 {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#toggle_menu:checked~.toggle_menu_icon .line-2 {
+    opacity: 0;
+}
+
+#toggle_menu:checked~.toggle_menu_icon .line-3 {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+#toggle_menu:checked~nav {
+    display: block;
+    background-color: #4873aa;
+    border-top: 5px solid #e5b11e;
+}
+
+nav {
+    display: none;
+
+
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+
+}
+
+nav ul li {
+    margin: 10px 0;
+    transition: all 1s;
+
+    &:hover {
+        background-color: #9cc4ae;
+    }
+}

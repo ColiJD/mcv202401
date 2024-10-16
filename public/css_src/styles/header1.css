@@ -1,0 +1,120 @@
+/* Estilos generales para la barra de navegación */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-bg300);
+    border-bottom: 5px solid var(--primary-bg);
+    color: var(--primary-text);
+    font-family: Roboto;
+}
+
+.header_lista {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header_lista li {
+    margin-left: 20px;
+}
+
+.header_lista li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.header_lista li a:hover {
+    color: #ddd;
+}
+
+/* Botón hamburguesa */
+.menu_toggle_icon {
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 30px;
+}
+
+.hmb {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.hmb.dgn {
+    width: 20px;
+}
+
+.hmb.pt-1 {
+    transform: translateY(6px);
+}
+
+.hmb.pt-2 {
+    transform: translateY(-6px);
+}
+
+/* Ocultar el menú en dispositivos pequeños por defecto */
+#menu {
+    display: flex;
+}
+
+#menu ul {
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 768px) {
+
+    /* Mostrar el ícono de menú en pantallas pequeñas */
+    .menu_toggle_icon {
+        display: flex;
+    }
+
+    #menu {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        text-align: center;
+        border-bottom: 5px solid var(--primary-bg);
+    }
+
+    #menu ul {
+        flex-direction: column;
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    #menu ul li {
+        margin: 10px 0;
+    }
+
+    /* Mostrar el menú cuando se activa el botón */
+    #toggle_menu:checked+.menu_toggle_icon+#menu {
+        display: block;
+        background-color: var(--primary-bg300);
+    }
+
+    /* Animación del botón hamburguesa */
+    #toggle_menu:checked+.menu_toggle_icon .hmb.dgn.pt-1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    #toggle_menu:checked+.menu_toggle_icon .hmb.hrz {
+        opacity: 0;
+    }
+
+    #toggle_menu:checked+.menu_toggle_icon .hmb.dgn.pt-2 {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+}

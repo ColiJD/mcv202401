@@ -1,0 +1,50 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', Courier, monospace;
+
+}
+
+.formulario {
+    margin-top: 1.2rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fff;
+    padding-bottom: 1.2rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario h2 {
+    text-align: center;
+}
+
+.LF {
+    box-shadow: none;
+    background-color: #fff;
+    border-radius: 0.75rem;
+    width: 100%;
+}
+
+.CButton {
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .formulario {
+        width: 50%;
+    }
+    .Lista_Box{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .formulario {
+        width: 40%;
+    }
+}

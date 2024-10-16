@@ -10,6 +10,7 @@ use Views\Renderer;
 
 class Products extends PrivateController
 {
+  
   private $partialName = "";
   private $status = "";
   private $orderBy = "";
@@ -20,6 +21,10 @@ class Products extends PrivateController
   private $products = [];
   private $productsCount = 0;
   private $pages = 0;
+  private $product_DSP = false;
+  private $product_UPD = false;
+  private $product_DEL = false;
+  private $product_INS = false;
 
   public function run(): void
   {
@@ -61,6 +66,10 @@ class Products extends PrivateController
   }
   private function getParamsFromContext(): void
   {
+    $this->product_DSP = $this->isFeatureAutorized("Products_DSP");
+    $this->product_UPD = $this->isFeatureAutorized("Products_UPD");
+    $this->product_DEL = $this->isFeatureAutorized("Products_DEL");
+    $this->product_INS = $this->isFeatureAutorized("Products_INS");
     $this->partialName = Context::getContextByKey("products_partialName");
     $this->status = Context::getContextByKey("products_status");
     $this->orderBy = Context::getContextByKey("products_orderBy");
@@ -69,9 +78,14 @@ class Products extends PrivateController
     $this->itemsPerPage = intval(Context::getContextByKey("products_itemsPerPage"));
     if ($this->pageNumber < 1) $this->pageNumber = 1;
     if ($this->itemsPerPage < 1) $this->itemsPerPage = 10;
+    
   }
   private function setParamsToContext(): void
   {
+    $this->viewData["product_DSP"] = $this->product_DSP;
+    $this->viewData["product_UPD"] = $this->product_UPD;
+    $this->viewData["product_DEL"] = $this->product_DEL;
+    $this->viewData["product_INS"] = $this->product_INS;
     Context::setContext("products_partialName", $this->partialName, true);
     Context::setContext("products_status", $this->status, true);
     Context::setContext("products_orderBy", $this->orderBy, true);

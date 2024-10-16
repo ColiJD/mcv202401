@@ -48,14 +48,18 @@ class Product extends PrivateController
       );
     }
   }
+  
   private function getData()
   {
     $this->mode = $_GET["mode"] ?? "NOF";
     if (isset($this->modeDescriptions[$this->mode])) {
+      if (!$this->isFeatureAutorized("product_" . $this->mode)) {
+        throw new \Exception("No tiene permisos para realizar esta acción.", 1);
+      }
       $this->readonly = $this->mode === "DEL" ? "readonly" : "";
       $this->showCommitBtn = $this->mode !== "DSP";
       if ($this->mode !== "INS") {
-        $this->product = ProductsDao::getProductById(intval($_GET["id"]));
+        $this->product = ProductsDao::getProductById(intval($_GET["productId"]));
         if (!$this->product) {
           throw new \Exception("No se encontró el Producto", 1);
         }
@@ -64,7 +68,6 @@ class Product extends PrivateController
       throw new \Exception("Formulario cargado en modalidad invalida", 1);
     }
   }
-
   private function validateData()
   {
     $errors = [];

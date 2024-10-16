@@ -1,19 +1,16 @@
 {
-    "autoload": {
-      "psr-4": {"":"src/"}
-    },
-    "require": { 
-        "wikimedia/less.php": "^3.1.0",
-        "paypal/paypal-checkout-sdk": "1.0.1"
-    },
-    "scripts" :{
-      "docs": "./vendor/phpdocumentor/phpdocumentor/bin/phpdoc -t ./docs/manual_tecnico",
-      "less": "./vendor/bin/lessc --compress ./public/css_src/style.less ./public/css/appstyle.css"
-      
-    },
-    "config": {
-        "allow-plugins": {
-            "symfony/flex": true
-        }
-    }
+  "autoload": {
+    "psr-4": {"":"src/"}
+  },
+  "require": { 
+      "paypal/paypal-checkout-sdk": "1.0.1"
+  },
+  "scripts": {
+    "docs": "./vendor/phpdocumentor/phpdocumentor/bin/phpdoc -t ./docs/manual_tecnico"
+  },
+  "config": {
+      "allow-plugins": {
+          "symfony/flex": true
+      }
+  }
 }

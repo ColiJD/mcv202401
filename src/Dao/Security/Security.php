@@ -58,15 +58,15 @@ class Security extends \Dao\Table
 
         $newUser = self::_usuarioStruct();
         //Tratamiento de la Contraseña
-        $hashedPassword = self::_hashPassword($password);
+        // $hashedPassword = self::_hashPassword($password);
 
         unset($newUser["usercod"]);
         unset($newUser["userfching"]);
         unset($newUser["userpswdchg"]);
 
         $newUser["useremail"] = $email;
-        $newUser["username"] = "John Doe";
-        $newUser["userpswd"] = $hashedPassword;
+        $newUser["username"] = $email;
+        $newUser["userpswd"] = $password;
         $newUser["userpswdest"] = Estados::ACTIVO;
         $newUser["userpswdexp"] = date('Y-m-d', time() + 7776000);  //(3*30*24*60*60) (m d h mi s)
         $newUser["userest"] = Estados::ACTIVO;
@@ -93,26 +93,28 @@ class Security extends \Dao\Table
         return self::obtenerUnRegistro($sqlstr, $params);
     }
 
-    static private function _saltPassword($password)
-    {
-        return hash_hmac(
-            "sha256",
-            $password,
-            \Utilities\Context::getContextByKey("PWD_HASH")
-        );
-    }
+    // static private function _saltPassword($password)
+    // {
+    //     return hash_hmac(
+    //         "sha256",
+    //         $password,
+    //         \Utilities\Context::getContextByKey("PWD_HASH")
+    //     );
+    // }
 
-    static private function _hashPassword($password)
-    {
-        return password_hash(self::_saltPassword($password), PASSWORD_ALGORITHM);
-    }
+    // static private function _hashPassword($password)
+    // {
+    //     return password_hash(self::_saltPassword($password), PASSWORD_ALGORITHM);
+    // }
 
-    static public function verifyPassword($raw_password, $hash_password)
+    static public function verifyPassword($raw_password,$password) //$hash_password)
     {
-        return password_verify(
-            self::_saltPassword($raw_password),
-            $hash_password
-        );
+        // return password_verify(
+        //     self::_saltPassword($raw_password),
+        //     $hash_password
+        // );
+        // Comparar directamente las contraseñas sin encriptación
+    return $raw_password === $password;
     }
 
 

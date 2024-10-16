@@ -1,0 +1,10 @@
+footer {
+    background-color: var(--primary-bg300);
+    border-top: 5px solid var(--primary-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    color: var(--primary-text);
+    font-family:'Roboto', Courier, monospace
+}
