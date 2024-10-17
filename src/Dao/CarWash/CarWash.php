@@ -59,12 +59,6 @@ class CarWash extends Table
             'Ocurrió un error de duplicado no identificado. Por favor, intente de nuevo.'
           );
         }
-      } else {
-        // Ocurrió otro error de integridad
-        \Utilities\Site::redirectToWithMsg(
-          'index.php?page=CarWash_CarWashForm&mode=INS',
-          'Ocurrió un error en la base de datos. Por favor, intente de nuevo.'
-        );
       }
     }
   }
@@ -95,5 +89,11 @@ class CarWash extends Table
   {
     $deleteSql = "DELETE FROM carwash WHERE lavado_Id = :lavado_Id";
     return self::executeNonQuery($deleteSql, ["lavado_Id" => $id]);
+  }
+  public static function getLastInsertedId()
+  {
+    $sqlstr = "SELECT LAST_INSERT_ID() as id;";
+    $result = self::obtenerUnRegistro($sqlstr, array());
+    return $result["id"];
   }
 }

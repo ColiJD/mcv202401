@@ -145,7 +145,7 @@ class CarWashForm extends PublicController
                 $this->addError('Nombre Invalido', "lavado_nombre_error");
             }
         }
-        
+
         if (isset($_POST["lavado_apellido"])) {
             $this->lavado_apellido = $_POST['lavado_apellido'];
             if (Validators::IsEmpty($this->lavado_apellido)) {
@@ -187,8 +187,10 @@ class CarWashForm extends PublicController
                     $this->lavado_img
                 );
                 if ($result > 0) {
+                    // Después de insertar, redirigir a la página que muestra los datos, usando el ID recién generado
+                    $insertedId = DaoCarWash::getLastInsertedId(); // Método que deberías tener para obtener el ID
                     Site::redirectToWithMsg(
-                        "index.php?page=CarWash_CarWashList",
+                        "index.php?page=CarWash_CarWashForm&mode=DSP&lavado_Id=" . $insertedId,
                         "Reservación Creada"
                     );
                 } else {
@@ -207,7 +209,7 @@ class CarWashForm extends PublicController
                 );
                 if ($result > 0) {
                     Site::redirectToWithMsg(
-                        "index.php?page=CarWash_CarWashList",
+                        "index.php?page=CarWash_CarWashForm&mode=DSP&lavado_Id={{lavado_Id}}",
                         "Reservación Actualizada"
                     );
                 } else {

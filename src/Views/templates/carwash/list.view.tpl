@@ -11,7 +11,7 @@
         <th>Estado</th>
         <th>
           {{if carwash_new_enable}}
-          <a href="index.php?page=CarWash_CarWashForm&mode=INS&lavado_Id=0">Nuevo</a></th>
+          <a href="index.php?page=CarWash_CarWashForm&mode=DSP&lavado_Id={{lavado_Id}}">Nuevo</a></th>
         {{endif carwash_new_enable}}
       </tr>
     </thead>
