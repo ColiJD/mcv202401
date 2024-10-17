@@ -7,3 +7,5 @@ CREATE TABLE CarWash(
     lavado_Tipo VARCHAR(50) NOT NULL,
     lavado_Img BLOB NOT NULL COMMENT 'Imagen del resivo de pago' 
 ) COMMENT 'Tabla para almacenar información de las reservaciones del carwash';
+ALTER TABLE carwash ADD CONSTRAINT unique_reservation_token UNIQUE (lavado_Reservacion);
+ALTER TABLE carwash ADD CONSTRAINT unique_reservation UNIQUE (lavado_Token);

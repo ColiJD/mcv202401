@@ -13,17 +13,17 @@
       </div>
       <div>
         <label for="lavado_nombre">Nombre</label>
-        <input type="text" name="lavado_nombre" id="lavado_nombre" value="{{lavado_nombre}}" {{isReadOnly}}>
+        <input type="text" name="lavado_nombre" id="lavado_nombre" value="{{lavado_nombre}}" {{isReadOnly}} required autofocus >
       </div>
       <div>
         <label for="lavado_apellido">Apellido</label>
-        <input type="text" name="lavado_apellido" id="lavado_apellido" value="{{lavado_apellido}}" {{isReadOnly}}>
+        <input type="text" name="lavado_apellido" id="lavado_apellido" value="{{lavado_apellido}}" {{isReadOnly}} required >
       </div>
       <div>
 
         <label for="lavado_token">Token de Lavado</label>
         <!-- Mostrar el token pero con readonly para que no sea editable -->
-        <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly>
+        <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
       </div>
       <div>
         <label for="lavado_reservacion">Hora de la reservación</label>

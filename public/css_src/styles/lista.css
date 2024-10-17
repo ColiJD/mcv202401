@@ -24,6 +24,7 @@
     background-color: #fff;
     border-radius: 0.75rem;
     width: 90%;
+    margin-bottom: 1.2rem;
 }
 
 .Lista_Box {
@@ -72,6 +73,7 @@
     height: 50px;
     width: 100%;
     font-size: 1.2rem;
+    margin-bottom: 0.75rem;
 }
 
 .btn-guardar:hover {

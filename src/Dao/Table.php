@@ -119,6 +119,34 @@ abstract class Table
             return array();
         }
     }
+    // Método que utiliza executeQuery
+    protected static function executeQuery($sqlstr, $params, &$conn = null)
+    {
+        // Establecer la conexión
+        $pConn = null;
+        if ($conn != null) {
+            $pConn = $conn; // Usar la conexión proporcionada
+        } else {
+            $pConn = self::getConn(); // Obtener la conexión predeterminada
+        }
+
+        // Preparar la consulta
+        $query = $pConn->prepare($sqlstr);
+
+        // Enlazar los parámetros
+        foreach ($params as $key => &$value) {
+            $query->bindParam(":" . $key, $value, self::getBindType($value));
+        }
+
+        // Ejecutar la consulta
+        $query->execute();
+
+        // Establecer el modo de recuperación
+        $query->setFetchMode(\PDO::FETCH_ASSOC);
+
+        // Devolver todos los resultados
+        return $query->fetchAll();
+    }
 }
 
 ?>

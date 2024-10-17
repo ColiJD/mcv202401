@@ -55,7 +55,7 @@ class CarWashForm extends PublicController
 
     private function addError($errorMsg, $origin = "global")
     {
-        if (!isset($this->error[$origin])) {
+        if (!isset($this->errorCopy[$origin])) {
             $this->error[$origin] = [];
         }
         $this->error[$origin][] = $errorMsg;
@@ -70,7 +70,7 @@ class CarWashForm extends PublicController
         }
 
         // Tiempo de expiración para el token en segundos (ejemplo: 10 minutos = 600 segundos)
-        $token_expiry_time = 600;
+        $token_expiry_time = 100;
 
         // Verificar si el token y el tiempo existen, y si el token ha expirado
         if (!isset($_SESSION['cxfToken']) || !isset($_SESSION['token_time']) || (time() - $_SESSION['token_time'] > $token_expiry_time)) {
@@ -84,7 +84,7 @@ class CarWashForm extends PublicController
         $this->cxfToken = $_SESSION['cxfToken'];
 
         // Mostrar el token en pantalla para depuración
-        echo "El token generado es: " . $this->cxfToken;
+        // echo "El token generado es: " . $this->cxfToken;
 
         // Asignar el token al campo 'lavado_token' automáticamente en lugar de permitir la entrada manual
         $this->lavado_token = $this->cxfToken;
@@ -145,6 +145,7 @@ class CarWashForm extends PublicController
                 $this->addError('Nombre Invalido', "lavado_nombre_error");
             }
         }
+        
         if (isset($_POST["lavado_apellido"])) {
             $this->lavado_apellido = $_POST['lavado_apellido'];
             if (Validators::IsEmpty($this->lavado_apellido)) {
@@ -173,7 +174,6 @@ class CarWashForm extends PublicController
             $this->lavado_img = file_get_contents($_FILES["lavado_img"]["tmp_name"]);
         }
     }
-
     private function executePostAction()
     {
         switch ($this->mode) {
@@ -228,7 +228,7 @@ class CarWashForm extends PublicController
                 }
                 break;
             default:
-                $this->addError("Modo Invalido");
+                echo "Ingreso de los datos fallida";
                 break;
         }
     }
