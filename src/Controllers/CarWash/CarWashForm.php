@@ -73,30 +73,30 @@ class CarWashForm extends PublicController
         $token_expiry_time = 100;
 
         // Verificar si el token y el tiempo existen, y si el token ha expirado
-        if (!isset($_SESSION['cxfToken']) || !isset($_SESSION['token_time']) || (time() - $_SESSION['token_time'] > $token_expiry_time)) {
-            // Generar un token único de 20 caracteres (10 bytes en hexadecimal, que son 20 caracteres)
-            $_SESSION['cxfToken'] = substr(bin2hex(random_bytes(10)), 0, 20);
+        if (!isset($_SESSION['lavado_token']) || !isset($_SESSION['token_time']) || (time() - $_SESSION['token_time'] > $token_expiry_time)) {
+            // Generar un token único de 7 caracteres 
+            $_SESSION['lavado_token'] = substr(bin2hex(random_bytes(10)), 0, 7);
             // Guardar el tiempo actual para control de expiración
             $_SESSION['token_time'] = time();
         }
 
         // Guardar el token en la variable de clase
-        $this->cxfToken = $_SESSION['cxfToken'];
+        $this->lavado_token = $_SESSION['lavado_token'];
 
         // Mostrar el token en pantalla para depuración
         // echo "El token generado es: " . $this->cxfToken;
 
         // Asignar el token al campo 'lavado_token' automáticamente en lugar de permitir la entrada manual
-        $this->lavado_token = $this->cxfToken;
+        // $this->lavado_token = $this->cxfToken;
 
         // Al cerrar la página o después del tiempo límite, se elimina el token
         // Puedes asegurarte de que el token se elimine destruyendo la sesión manualmente o al expirar el tiempo
         if (isset($_SESSION['token_time']) && (time() - $_SESSION['token_time'] > $token_expiry_time)) {
-            unset($_SESSION['cxfToken']);
+            unset($_SESSION['lavado_token']);
             unset($_SESSION['token_time']);
         }
 
-
+////////////////////////////////////////////////////////////////////////////////
         if (isset($_GET['mode'])) {
             $this->mode = $_GET['mode'];
             if (!isset($this->modeDscArr[$this->mode])) {
@@ -124,11 +124,9 @@ class CarWashForm extends PublicController
     {
         if (isset($_POST["cxfToken"])) {
             $this->cxfToken = $_POST['cxfToken'];
-            if ($this->cxfToken !== $_SESSION['cxfToken']) { // Comparar con el token almacenado en la sesión
+            if (Validators::IsEmpty($this->cxfToken)) {
                 $this->addError('Token Invalido');
             }
-        } else {
-            $this->addError('Token no proporcionado');
         }
         if (isset($_POST['mode'])) {
             $tmpMode = $_POST['mode'];
@@ -152,7 +150,16 @@ class CarWashForm extends PublicController
                 $this->addError('Apellido Invalido', "lavado_apellido_error");
             }
         }
-        $this->lavado_token = $this->cxfToken;
+
+        if (isset($_POST["lavado_token"])) {
+            $this->lavado_token = $_POST['lavado_token'];
+            if ($this->lavado_token !== $_SESSION['lavado_token']) { // Comparar con el token almacenado en la sesión
+                $this->addError('Token Invalido');
+            }
+        } else {
+            $this->addError('Token no proporcionado');
+        }
+       
 
         // Validar que el token no esté vacío (aunque debería estar siempre presente)
         if (Validators::IsEmpty($this->lavado_token)) {
@@ -242,9 +249,10 @@ class CarWashForm extends PublicController
         $this->viewData["lavado_nombre"] = $this->lavado_nombre;
         $this->viewData["lavado_apellido"] = $this->lavado_apellido;
         // Asegurarse de pasar el valor del token generado a la vista
-        $this->viewData["lavado_token"] = $this->cxfToken;
+        $this->viewData["lavado_token"] = $this->lavado_token;
         $this->viewData["lavado_reservacion"] = $this->lavado_reservacion;
         $this->viewData["lavado_tipo"] = $this->lavado_tipo;
+        $this->viewData["lavado_img"] = $this->lavado_img;
         $this->viewData["lavado_id"] = $this->lavado_id;
         $this->viewData["error"] = $this->error;
         $this->viewData["has_errors"] = $this->has_errors;
@@ -266,7 +274,7 @@ class CarWashForm extends PublicController
             "key",
             "values",
             "selected",
-            $this->horasReservacion
+            $this->lavado_reservacion
         );
         $this->viewData["tipoOpciones"] = ArrUtils::toOptionsArray(
             $this->tipoOpciones,

@@ -1,95 +1,84 @@
-.Lista_Contenedor {
+.WWList {
+    margin: 0 auto;
+    /* Centra la sección en la página */
+    max-width: 100%;
+    /* Asegura que no exceda el ancho de la pantalla */
+    background-color: #f9f9f9;
+    /* Color de fondo */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem;
+    font-family: 'Roboto', Courier, monospace;
+
+}
+
+.WWList h2 {
+    font-size: 24px;
+    /* Tamaño de fuente del título */
+    margin-bottom: 20px;
+    /* Espaciado debajo del título */
+    text-align: center;
+    /* Alineación del texto */
+}
+
+
+.list_Tabla {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    margin-top: 1.2rem;
-    font-style: italic;
-    font-family: Roboto;
-}
-
-.Lista_Contenedor h2 {
-    margin: 0;
-    margin-bottom: 0.75rem;
-    font-size: 1.4rem;
-    border-bottom: 3px solid var(--primary-bg);
-    display: inline-block;
-    color: var(--primary-bg300);
-}
-
-.Lista_Formulario {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    background-color: #fff;
-    border-radius: 0.75rem;
-    width: 90%;
-    margin-bottom: 1.2rem;
-}
-
-.Lista_Box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.Lista_Box div {
-    margin: 0.2rem 0;
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-}
-
-.Lista_Box div input,
-.Lista_Box div select {
-    border-radius: 0.5rem;
-    background-color: var(--primary-text);
-    color: var(--primary-bg300);
-    height: 35px;
-    border: 0.5px solid var(--primary-bg800);
-    font-style: italic;
-    font-size: 1.1rem;
-    outline: none;
-    cursor: pointer;
-
+    /* La tabla ocupa el 100% del ancho disponible */
+    border-collapse: collapse;
+    /* Elimina el espacio entre celdas */
+    margin-top: 10px;
+    /* Espacio superior de la tabla */
+    table-layout: auto;
 
 }
 
-.Lista_Box div label {
-    font-size: 1.1rem;
-    font-style: italic;
-    line-height: 1.2;
-    color: var(--primary-bg300);
-}
-
-.btn-guardar {
-    background-color: #4CAF50;
+.Tabla_cavezal {
+    background-color: #007BFF;
+    /* Color de fondo del encabezado */
     color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 1s;
-    height: 50px;
+    /* Color del texto del encabezado */
+}
+
+th,
+td {
+    font-size: small;
+    word-wrap: break-word;
+    padding: 0.1rem;
+    /* Espaciado interno en celdas */
+    text-align: center;
+    /* Alineación del texto en celdas */
+    border: 1px solid #ddd;
+    /* Borde de las celdas */
+}
+
+.disable {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-bg300);
+    transition: all 1s ease-in;
     width: 100%;
-    font-size: 1.2rem;
-    margin-bottom: 0.75rem;
+
+
 }
 
-.btn-guardar:hover {
-    background-color: #45a049;
-    color: white;
-    transform: scale(0.9);
+a:hover {
+    color: var(--primary-bg800);
 }
+
+
 
 @media screen and (min-width: 768px) {
-    .Lista_Formulario {
-        width: 50%;
+    .WWList {
+        padding: 1.2rem;
     }
-}
 
-@media screen and (min-width: 1024px) {
-    .Lista_Formulario {
-        width: 40%;
+    .disable {
+        display: block;
     }
+
 }

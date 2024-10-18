@@ -13,14 +13,15 @@
       </div>
       <div>
         <label for="lavado_nombre">Nombre</label>
-        <input type="text" name="lavado_nombre" id="lavado_nombre" value="{{lavado_nombre}}" {{isReadOnly}} required autofocus >
+        <input type="text" name="lavado_nombre" id="lavado_nombre" value="{{lavado_nombre}}" {{isReadOnly}} required
+          autofocus>
       </div>
       <div>
         <label for="lavado_apellido">Apellido</label>
-        <input type="text" name="lavado_apellido" id="lavado_apellido" value="{{lavado_apellido}}" {{isReadOnly}} required >
+        <input type="text" name="lavado_apellido" id="lavado_apellido" value="{{lavado_apellido}}" {{isReadOnly}}
+          required>
       </div>
       <div>
-
         <label for="lavado_token">Token de Lavado</label>
         <!-- Mostrar el token pero con readonly para que no sea editable -->
         <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
@@ -42,9 +43,17 @@
         </select>
       </div>
       <div>
-        <label for="lavado_img">Imagen</label>
+        <label for="lavado_img">Imagen del Pago</label>
         <input type="file" name="lavado_img" id="lavado_img" accept="image/*" {{isReadOnly}}>
       </div>
+      <!-- Mostrar la imagen si está disponible -->
+      {{if lavado_img}}
+      <div>
+        <label>Imagen del Pago</label>
+        <img src="data:image/jpeg;base64,{{lavado_img}}" alt="Imagen de Lavado"
+          style="max-width: 200px; max-height: 200px;">
+      </div>
+      {{endif lavado_img}}
       <div>
         {{if showActions}}
         <input type="submit" value="Guardar" {{isReadOnly}} class="btn-guardar">

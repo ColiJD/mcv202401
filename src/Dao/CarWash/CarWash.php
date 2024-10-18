@@ -46,18 +46,30 @@ class CarWash extends Table
       if ($e->getCode() === "23000") { // Código de error para violación de integridad
         $errorMsg = $e->getMessage();
 
-        // Verificar si la clave violada es 'unique_reservation_token'
-        if (strpos($errorMsg, 'unique_reservation_token') !== false) {
-          \Utilities\Site::redirectToWithMsg(
-            'index.php?page=CarWash_CarWashForm&mode=INS',
-            'Usted ya tiene una reservación o la hora ya a sido reservada. Por favor, elija otra hora o espere a que su token se reinicie.'
-          );
-        } else {
-          // Ocurrió un error de duplicado, pero no se identificó la clave única
-          \Utilities\Site::redirectToWithMsg(
-            'index.php?page=CarWash_CarWashForm&mode=INS',
-            'Ocurrió un error de duplicado no identificado. Por favor, intente de nuevo.'
-          );
+        // Verificar si el mensaje contiene "Duplicate entry"
+        if (strpos($errorMsg, 'Duplicate entry') !== false) {
+
+          // Verificar si la clave violada es 'unique_reservation_token'
+          if (strpos($errorMsg, 'unique_reservation_token') !== false) {
+            \Utilities\Site::redirectToWithMsg(
+              'index.php?page=CarWash_CarWashForm&mode=INS',
+              'La hora de reservación ya existe. Elija otra.'
+            );
+
+            // Verificar si la clave violada es 'unique_reservation'
+          } elseif (strpos($errorMsg, 'unique_reservation') !== false) {
+            \Utilities\Site::redirectToWithMsg(
+              'index.php?page=CarWash_CarWashForm&mode=INS',
+              'Usted ya tiene una reservación con ese token. Por favor, elija otro.'
+
+            );
+          } else {
+            // Ocurrió un error de duplicado, pero no se identificó la clave única
+            \Utilities\Site::redirectToWithMsg(
+              'index.php?page=CarWash_CarWashForm&mode=INS',
+              'Ocurrió un error de duplicado no identificado. Por favor, intente de nuevo.'
+            );
+          }
         }
       }
     }

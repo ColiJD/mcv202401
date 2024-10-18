@@ -1,0 +1,107 @@
+.Lista_Contenedor {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    margin-top: 1.2rem;
+    font-style: italic;
+    font-family: Roboto;
+}
+
+.Lista_Contenedor h2 {
+    margin: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    border-bottom: 3px solid var(--primary-bg);
+    display: inline-block;
+    color: var(--primary-bg300);
+}
+
+.Lista_Formulario {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #fff;
+    border-radius: 0.75rem;
+    width: 90%;
+    margin-bottom: 1.2rem;
+}
+
+.Lista_Box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Lista_Box div {
+    margin: 0.2rem 0;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.Lista_Box div input,
+.Lista_Box div select {
+    border-radius: 0.5rem;
+    background-color: var(--primary-text);
+    color: var(--primary-bg300);
+    height: 35px;
+    border: 0.5px solid var(--primary-bg800);
+    font-style: italic;
+    font-size: 1.1rem;
+    outline: none;
+    cursor: pointer;
+
+
+}
+
+.Lista_Box div label {
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--primary-bg300);
+}
+
+.btn-guardar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 1s;
+    height: 50px;
+    width: 100%;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.btn-guardar:hover {
+    background-color: #45a049;
+    color: white;
+    transform: scale(0.9);
+}
+.Lista_Imagen {
+    max-width: 100%;
+    /* Ajusta la imagen al ancho del contenedor */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
+    margin-bottom: 20px;
+    /* Espacio debajo de la imagen */
+    border: 1px solid #ccc;
+    /* Bordes opcionales */
+    border-radius: 5px;
+    /* Bordes redondeados opcionales */
+}
+
+@media screen and (min-width: 768px) {
+    .Lista_Formulario {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .Lista_Formulario {
+        width: 40%;
+    }
+}
