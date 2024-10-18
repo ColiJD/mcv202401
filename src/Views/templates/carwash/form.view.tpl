@@ -48,10 +48,17 @@
       </div>
       <!-- Mostrar la imagen si está disponible -->
       {{if lavado_img}}
-      <div>
+      <div >
         <label>Imagen del Pago</label>
-        <img src="data:image/jpeg;base64,{{lavado_img}}" alt="Imagen de Lavado"
-          style="max-width: 200px; max-height: 200px;">
+        <img src="data:image/{{formato}};base64,{{lavado_img}}" alt="Imagen de Lavado" class="Lista_Imagen"
+          style="width: 100%; transition: transform 0.5s; cursor: pointer; overflow: auto" onclick="if (this.style.transform === 'scale(2)') {
+                  this.style.transform = 'scale(1)';
+              } else {
+                  this.style.transform = 'scale(2)';
+                  
+              }">
+
+
       </div>
       {{endif lavado_img}}
       <div>

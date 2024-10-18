@@ -55,7 +55,7 @@ class CarWashForm extends PublicController
 
     private function addError($errorMsg, $origin = "global")
     {
-        if (!isset($this->errorCopy[$origin])) {
+        if (!isset($this->error[$origin])) {
             $this->error[$origin] = [];
         }
         $this->error[$origin][] = $errorMsg;

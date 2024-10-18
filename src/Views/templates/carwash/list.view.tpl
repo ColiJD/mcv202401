@@ -30,8 +30,7 @@
           {{endif carwash_edit_enable}}
           &nbsp;
 
-          <a href="index.php?page=CarWash_CarWashForm&mode=DEL&lavado_Id={{lavado_Id}}">Eliminar</a>
-          &nbsp;
+         
 
 
         </th>

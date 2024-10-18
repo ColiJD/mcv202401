@@ -2,11 +2,11 @@
 
 namespace Controllers\CarWash;
 
-use Controllers\PublicController;
+use Controllers\PrivateController;
 use Dao\CarWash\CarWash as DaoCarWash;
 use Views\Renderer;
 
-class CarWashList extends PublicController
+class CarWashList extends PrivateController
 {
   public function run(): void
   {
