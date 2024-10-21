@@ -1,7 +1,9 @@
+
 <section class="Lista_Contenedor">
   <h2>{{modeDsc}}</h2>
   <form class="Lista_Formulario" action="index.php?page=CarWash_CarWashForm&mode={{mode}}&lavado_Id={{lavado_id}}"
     method="post" enctype="multipart/form-data">
+    <legend>Reservaciones disponibles:{{totalReservaciones}}</legend>
     <div class="Lista_Box">
       <div class="">
         <input type="hidden" name="mode" value="{{mode}}">
@@ -26,7 +28,7 @@
         <!-- Mostrar el token pero con readonly para que no sea editable -->
         <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
       </div>
-      <div>
+      <div style="display: none;">
         <label for="lavado_reservacion">Reservación</label>
         <select name="lavado_reservacion" id="lavado_reservacion" {{isReadOnly}}>
           {{foreach horasReservacion}}

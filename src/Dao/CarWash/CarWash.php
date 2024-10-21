@@ -114,4 +114,16 @@ class CarWash extends Table
     $result = self::obtenerUnRegistro($sqlstr, array());
     return $result["id"];
   }
+  static public function getviewReservacions()
+  {
+    $sqlstr = "SELECT COUNT(*) as total FROM carwash";
+    $result = self::executeQuery($sqlstr, []);
+
+    if (count($result) > 0) {
+      // Calcular reservaciones disponibles
+      return 8 - $result[0]['total']; // Restar el total de reservaciones de 8
+    }
+
+    return 8; //
+  }
 }

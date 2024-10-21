@@ -8,12 +8,12 @@
 
       <div class="Lista_Box">
         <div>
-          <label for="txtEmail">Correo Electrónico</label>
-          <input type="email" id="txtEmail" name="txtEmail" value="{{txtEmail}}" />
+          <label for="txtUsuario">Usuario</label>
+          <input type="text" id="txtUsuario" name="txtUsuario" value="{{txtUsuario}}" />
 
-          {{if errorEmail}}
-          <div>{{errorEmail}}</div>
-          {{endif errorEmail}}
+          {{if errorUsuario}}
+          <div>{{errorUsuario}}</div>
+          {{endif errorUsuario}}
         </div>
         <div>
           <label for="txtPswd">Contraseña</label>

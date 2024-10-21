@@ -47,10 +47,10 @@ class Security extends \Dao\Table
         return self::obtenerRegistros($sqlstr, array());
     }
 
-    static public function newUsuario($email, $password)
+    static public function newUsuario($usuario, $password)
     {
-        if (!\Utilities\Validators::IsValidEmail($email)) {
-            throw new Exception("Correo no es válido");
+        if (!\Utilities\Validators::IsEmpty($usuario)) {
+            throw new Exception("Usuario no es válido");
         }
         if (!\Utilities\Validators::IsValidPassword($password)) {
             throw new Exception("Contraseña debe ser almenos 8 caracteres, 1 número, 1 mayúscula, 1 símbolo especial");
@@ -64,13 +64,13 @@ class Security extends \Dao\Table
         unset($newUser["userfching"]);
         unset($newUser["userpswdchg"]);
 
-        $newUser["useremail"] = $email;
-        $newUser["username"] = $email;
+        $newUser["useremail"] = $usuario;
+        $newUser["username"] = $usuario;
         $newUser["userpswd"] = $password;
         $newUser["userpswdest"] = Estados::ACTIVO;
         $newUser["userpswdexp"] = date('Y-m-d', time() + 7776000);  //(3*30*24*60*60) (m d h mi s)
         $newUser["userest"] = Estados::ACTIVO;
-        $newUser["useractcod"] = hash("sha256", $email.time());
+        $newUser["useractcod"] = hash("sha256", $usuario.time());
         $newUser["usertipo"] = UsuarioTipo::PUBLICO;
 
         $sqlIns = "INSERT INTO `usuario` (`useremail`, `username`, `userpswd`,
@@ -85,10 +85,10 @@ class Security extends \Dao\Table
 
     }
 
-    static public function getUsuarioByEmail($email)
+    static public function getUsuarioByUsuario($usuario)
     {
-        $sqlstr = "SELECT * from `usuario` where `useremail` = :useremail ;";
-        $params = array("useremail"=>$email);
+        $sqlstr = "SELECT * from `usuario` where `username` = :username ;";
+        $params = array("username"=>$usuario);
 
         return self::obtenerUnRegistro($sqlstr, $params);
     }

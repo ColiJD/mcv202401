@@ -25,6 +25,26 @@
     border-radius: 0.75rem;
     width: 90%;
     margin-bottom: 1.2rem;
+    text-align: center;
+}
+.Lista_Formulario legend{
+    position: relative; /* Posicionamiento relativo para el contenedor */
+    width: 100%; 
+    margin-top: 0.75rem;
+    text-align: center;
+    padding: 0.2rem;
+    
+}
+
+.Lista_Formulario legend::after {
+    content: ""; /* Pseudo-elemento para el borde */
+    position: absolute;
+    left: 50%; /* Centrar horizontalmente */
+    bottom: 0; /* Alineado al fondo del contenedor */
+    width: 30%; /* Ancho del borde */
+    height: 3px; /* Grosor del borde */
+    background-color: var(--primary-bg800); /* Color del borde */
+    transform: translateX(-50%); /* Centrar el borde */
 }
 
 .Lista_Box {
@@ -32,6 +52,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    text-align: left;
 }
 
 .Lista_Box div {

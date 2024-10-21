@@ -89,7 +89,7 @@ class CarWashForm extends PublicController
             unset($_SESSION['token_time']);
         }
 
-////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
         if (isset($_GET['mode'])) {
             $this->mode = $_GET['mode'];
             if (!isset($this->modeDscArr[$this->mode])) {
@@ -152,7 +152,7 @@ class CarWashForm extends PublicController
         } else {
             $this->addError('Token no proporcionado');
         }
-       
+
 
         // Validar que el token no esté vacío (aunque debería estar siempre presente)
         if (Validators::IsEmpty($this->lavado_token)) {
@@ -281,6 +281,11 @@ class CarWashForm extends PublicController
 
     public function run(): void
     {
+        // Obtener el total de reservaciones
+        $totalReservaciones = DaoCarWash::getviewReservacions();
+
+        // Asignar el total a la variable de vista
+        $this->viewData["totalReservaciones"] = $totalReservaciones;
         $this->getGetData();
         if ($this->isPostBack()) {
             $this->getPostData();
