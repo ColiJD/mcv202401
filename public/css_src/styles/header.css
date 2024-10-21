@@ -8,6 +8,7 @@
     border-bottom: 5px solid var(--primary-bg);
     color: var(--primary-text);
     font-family: Roboto;
+    z-index: 1;
 }
 
 .header_lista {
