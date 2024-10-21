@@ -9,3 +9,9 @@ CREATE TABLE CarWash(
 ) COMMENT 'Tabla para almacenar información de las reservaciones del carwash';
 ALTER TABLE carwash ADD CONSTRAINT unique_reservation_token UNIQUE (lavado_Reservacion);
 ALTER TABLE carwash ADD CONSTRAINT unique_reservation UNIQUE (lavado_Token);
+
+ALTER TABLE carwash
+DROP CONSTRAINT unique_reservation_token;
+
+SELECT COUNT(*) as total FROM carwash 
+

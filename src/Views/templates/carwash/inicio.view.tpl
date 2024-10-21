@@ -1,7 +1,7 @@
 <section class="inicio">
     <div>
-        <picture>
-            <source srcset="https://raw.githubusercontent.com/ColiJD/imagenes/refs/heads/main/imgs/splash/drawable-land-xhdpi-screen.png?token=GHSAT0AAAAAACY2I24GRBQNY7ZGSTLBGHSWZYWNSOQ" media="(min-width: 1024px)" />
+        <picture><source srcset="https://productoresdeazucarhonduras.com/wp-content/uploads/2022/08/2-1.png" media="(min-width: 768px)" />
+            
             <img src="https://productoresdeazucarhonduras.com/wp-content/uploads/elementor/thumbs/2-1-ptr6xjo4tghogauxsqkxxwrk395sc23efl66d3570w.png"
                 alt="MDN" />
         </picture>

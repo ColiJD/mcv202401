@@ -23,7 +23,7 @@ class CarWashForm extends PublicController
 
     private $modeDscArr = [
         "DSP" => "Mostrar %s",
-        "INS" => "Agregar una reservacion",
+        "INS" => "Agregar una reservación",
         "UPD" => "Actualizar %s",
         "DEL" => "Eliminar %s"
     ];
@@ -41,14 +41,7 @@ class CarWashForm extends PublicController
         "LAVADO_NORMAL_CHASIS_MOTOR" => "Lavado normal más chasis y motor"
     ];
     private $horasReservacion = [
-        "H07" => "7:00 a.m.",
-        "H08" => "8:00 a.m.",
-        "H09" => "9:00 a.m.",
-        "H10" => "10:00 a.m.",
-        "H11" => "11:00 a.m.",
-        "H13" => "1:00 p.m.",
-        "H14" => "2:00 p.m.",
-        "H15" => "3:00 p.m."
+        "Nueva Reservación" => "Nueva Reservación",
     ];
 
 
@@ -70,7 +63,7 @@ class CarWashForm extends PublicController
         }
 
         // Tiempo de expiración para el token en segundos (ejemplo: 10 minutos = 600 segundos)
-        $token_expiry_time = 100;
+        $token_expiry_time = 20;
 
         // Verificar si el token y el tiempo existen, y si el token ha expirado
         if (!isset($_SESSION['lavado_token']) || !isset($_SESSION['token_time']) || (time() - $_SESSION['token_time'] > $token_expiry_time)) {

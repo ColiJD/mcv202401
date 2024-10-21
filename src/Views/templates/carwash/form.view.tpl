@@ -27,7 +27,7 @@
         <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
       </div>
       <div>
-        <label for="lavado_reservacion">Hora de la reservación</label>
+        <label for="lavado_reservacion">Reservación</label>
         <select name="lavado_reservacion" id="lavado_reservacion" {{isReadOnly}}>
           {{foreach horasReservacion}}
           <option value="{{key}}" {{selected}}>{{values}}</option>
@@ -44,11 +44,11 @@
       </div>
       <div>
         <label for="lavado_img">Imagen del Pago</label>
-        <input type="file" name="lavado_img" id="lavado_img" accept="image/*" {{isReadOnly}}>
+        <input type="file" name="lavado_img" id="lavado_img" accept="image/*" {{isReadOnly}} required>
       </div>
       <!-- Mostrar la imagen si está disponible -->
       {{if lavado_img}}
-      <div >
+      <div>
         <label>Imagen del Pago</label>
         <img src="data:image/{{formato}};base64,{{lavado_img}}" alt="Imagen de Lavado" class="Lista_Imagen"
           style="width: 100%; transition: transform 0.5s; cursor: pointer; overflow: auto" onclick="if (this.style.transform === 'scale(2)') {
@@ -57,8 +57,6 @@
                   this.style.transform = 'scale(2)';
                   
               }">
-
-
       </div>
       {{endif lavado_img}}
       <div>

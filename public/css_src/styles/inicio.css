@@ -4,6 +4,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: 'Roboto', Courier, monospace;
 
 }
 
@@ -41,14 +42,8 @@
 @media screen and (min-width: 768px) {
 
     .inicio img {
-        width: 250px;
-    }
-
-}
-@media screen and (min-width: 768px) {
-
-    .inicio img {
-        width: 90%;
+        width: 70%;
+        
     }
 
 }
