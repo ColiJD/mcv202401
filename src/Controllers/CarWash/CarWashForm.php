@@ -32,8 +32,10 @@ class CarWashForm extends PublicController
 
     private $error = [];
     private $has_errors = false;
+    private bool $hasError1 = false;
     private $isReadOnly = "readonly";
     private $showActions = true;
+    private $noActions = true;
     private $cxfToken = "";
 
     private $tipoOpciones = [
@@ -304,12 +306,18 @@ class CarWashForm extends PublicController
             if ($this->mode == "DSP") {
                 $this->showActions = false;
             }
+            if ($this->mode == "INS") {
+                $this->noActions = true;
+            }
         } else {
             $this->isReadOnly = "";
             $this->showActions = true;
+            $this->noActions = false;
         }
+
         $this->viewData["isReadOnly"] = $this->isReadOnly;
         $this->viewData["showActions"] = $this->showActions;
+        $this->viewData["noActions"] = $this->noActions;
         $this->viewData["cxfToken"] = $this->cxfToken;
         $this->viewData["horasReservacion"] = ArrUtils::toOptionsArray(
             $this->horasReservacion,

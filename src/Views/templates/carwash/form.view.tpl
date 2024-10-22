@@ -30,8 +30,7 @@
       <div>
         <label for="lavado_Telefono">Teléfono</label>
         <input type="number" id="lavado_Telefono" name="lavado_Telefono" value="{{lavado_Telefono}}" {{readonly}}
-          required min="10000000" oninput="validatePhone()">
-        <span id="error-message" style="color: red; display: none;">El teléfono debe tener al menos 8 dígitos.</span>
+          required min="10000000">
       </div>
       <div>
         <label for="lavado_tipo">Estado</label>
@@ -71,23 +70,12 @@
         {{if showActions}}
         <input type="submit" value="Guardar" {{isReadOnly}} class="btn-guardar">
         {{endif showActions}}
+        {{if noActions}}
+        <input type="button" value="Imprimir" {{isReadOnly}} onclick="window.print()" class="btn-guardar">
+        {{endif noActions}}
         <input style="display: none;" type="button" value="Cancelar"
           onclick="location.href='index.php?page=CarWash_CarWashList'">
       </div>
     </div>
   </form>
 </section>
-
-<script>
-  function validatePhone() {
-    const phoneInput = document.getElementById('lavado_Telefono');
-    const errorMessage = document.getElementById('error-message');
-
-    // Comprobar si el número tiene menos de 8 dígitos
-    if (phoneInput.value.length < 8) {
-      errorMessage.style.display = 'inline';
-    } else {
-      errorMessage.style.display = 'none';
-    }
-  }
-</script>
