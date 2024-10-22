@@ -19,6 +19,8 @@ class CarWashForm extends PublicController
     private $lavado_reservacion = "";
     private $lavado_tipo = "";
     private $lavado_img = "";
+    private $lavado_Telefono = "";
+    private $total = 0;
     private $mode = "DSP";
 
     private $modeDscArr = [
@@ -35,7 +37,7 @@ class CarWashForm extends PublicController
     private $cxfToken = "";
 
     private $tipoOpciones = [
-        "LAVADO_NORMAL" => "Lavado normal",
+        "LAVADO_NORMAL" => "Lavado normal ",
         "LAVADO_NORMAL_CHASIS" => "Lavado normal más chasis",
         "LAVADO_NORMAL_MOTOR" => "Lavado normal más motor",
         "LAVADO_NORMAL_CHASIS_MOTOR" => "Lavado normal más chasis y motor"
@@ -43,6 +45,7 @@ class CarWashForm extends PublicController
     private $horasReservacion = [
         "Nueva Reservación" => "Nueva Reservación",
     ];
+
 
 
 
@@ -107,6 +110,8 @@ class CarWashForm extends PublicController
                 $this->lavado_tipo = $tmpCarWashFromDb['lavado_Tipo'];
                 // Suponiendo que la imagen se gestiona como una cadena en base64
                 $this->lavado_img = base64_encode($tmpCarWashFromDb['lavado_Img']);
+                $this->lavado_Telefono = $tmpCarWashFromDb["lavado_Telefono"];
+                $this->total = (float)$tmpCarWashFromDb['total'];
             } else {
                 $this->addError("Reservación No Encontrada");
             }
@@ -168,10 +173,48 @@ class CarWashForm extends PublicController
             $this->lavado_tipo = $_POST['lavado_tipo'];
             if (!isset($this->tipoOpciones[$this->lavado_tipo])) {
                 $this->addError('Tipo Invalido', "lavado_tipo_error");
+            } else {
+                // Asignar el valor del total según el tipo de lavado seleccionado
+                switch ($this->lavado_tipo) {
+                    case "LAVADO_NORMAL":
+                        $this->total = 500;
+                        break;
+                    case "LAVADO_NORMAL_CHASIS":
+                        $this->total = 700;
+                        break;
+                    case "LAVADO_NORMAL_MOTOR":
+                        $this->total = 800;
+                        break;
+                    case "LAVADO_NORMAL_CHASIS_MOTOR":
+                        $this->total = 1000;
+                        break;
+                    default:
+                        $this->total = 500; // Valor predeterminado en caso de que no coincida ninguna opción
+                        break;
+                }
             }
         }
+
         if (isset($_FILES["lavado_img"]) && $_FILES["lavado_img"]["error"] == 0) {
             $this->lavado_img = file_get_contents($_FILES["lavado_img"]["tmp_name"]);
+        }
+        if (isset($_POST["lavado_Telefono"])) {
+            $this->lavado_Telefono = $_POST['lavado_Telefono'];
+            if (Validators::IsEmpty($this->lavado_Telefono)) {
+                $this->addError('Telefono Invalido', "lavado_Telefono_error");
+            }
+        }
+        if (isset($_POST["lavado_Telefono"])) {
+            $this->lavado_Telefono = $_POST['lavado_Telefono'];
+            if (Validators::IsNumeric($this->lavado_Telefono)) {
+                $this->addError('Solo se permite números', "lavado_Telefono_error");
+            }
+        }
+        if (isset($_POST["lavado_Telefono"])) {
+            $this->lavado_Telefono = $_POST['lavado_Telefono'];
+            if (Validators::IsEightDigits($this->lavado_Telefono)) {
+                $this->addError('El Telefono debe tener 8 caracteres', "lavado_Telefono_error");
+            }
         }
     }
     private function executePostAction()
@@ -184,7 +227,9 @@ class CarWashForm extends PublicController
                     $this->lavado_token,
                     $this->lavado_reservacion,
                     $this->lavado_tipo,
-                    $this->lavado_img
+                    $this->lavado_img,
+                    $this->lavado_Telefono,
+                    $this->total
                 );
                 if ($result > 0) {
                     // Después de insertar, redirigir a la página que muestra los datos, usando el ID recién generado
@@ -205,6 +250,8 @@ class CarWashForm extends PublicController
                     $this->lavado_reservacion,
                     $this->lavado_tipo,
                     $this->lavado_img,
+                    $this->lavado_Telefono,
+                    $this->total,
                     $this->lavado_id
                 );
                 if ($result > 0) {
@@ -246,6 +293,8 @@ class CarWashForm extends PublicController
         $this->viewData["lavado_reservacion"] = $this->lavado_reservacion;
         $this->viewData["lavado_tipo"] = $this->lavado_tipo;
         $this->viewData["lavado_img"] = $this->lavado_img;
+        $this->viewData["lavado_Telefono"] = $this->lavado_Telefono;
+        $this->viewData["total"] = $this->total;
         $this->viewData["lavado_id"] = $this->lavado_id;
         $this->viewData["error"] = $this->error;
         $this->viewData["has_errors"] = $this->has_errors;

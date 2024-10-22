@@ -29,7 +29,9 @@ class CarWash extends Table
     $lavado_Token,
     $lavado_Reservacion,
     $lavado_Tipo,
-    $lavado_Img
+    $lavado_Img,
+    $lavado_Telefono,
+    $total
   ) {
     // Verificar si hay menos de 8 registros en total
     $checkSql = "SELECT COUNT(*) as total FROM carwash";
@@ -47,8 +49,8 @@ class CarWash extends Table
     }
 
     // Si hay menos de 8 registros, proceder con el inserto
-    $insertSql = "INSERT INTO carwash (lavado_Nombre, lavado_Apellido, lavado_Token, lavado_Reservacion, lavado_Tipo, lavado_Img) 
-                  VALUES (:lavado_Nombre, :lavado_Apellido, :lavado_Token, :lavado_Reservacion, :lavado_Tipo, :lavado_Img)";
+    $insertSql = "INSERT INTO carwash (lavado_Nombre, lavado_Apellido, lavado_Token, lavado_Reservacion, lavado_Tipo, lavado_Img,lavado_Telefono,total) 
+                  VALUES (:lavado_Nombre, :lavado_Apellido, :lavado_Token, :lavado_Reservacion, :lavado_Tipo, :lavado_Img,:lavado_Telefono,:total)";
 
     try {
       return self::executeNonQuery($insertSql, [
@@ -57,7 +59,9 @@ class CarWash extends Table
         "lavado_Token" => $lavado_Token,
         "lavado_Reservacion" => $lavado_Reservacion,
         "lavado_Tipo" => $lavado_Tipo,
-        "lavado_Img" => $lavado_Img
+        "lavado_Img" => $lavado_Img,
+        "lavado_Telefono" => $lavado_Telefono,
+        "total" => $total
       ]);
     } catch (\PDOException $e) {
       if ($e->getCode() === "23000") { // Manejar errores de duplicado
@@ -88,9 +92,11 @@ class CarWash extends Table
     $lavado_Reservacion,
     $lavado_Tipo,
     $lavado_Img,
-    $lavado_Id
+    $lavado_Id,
+    $lavado_Telefono,
+    $total
   ) {
-    $updateSql = "UPDATE carwash SET lavado_Nombre = :lavado_Nombre, lavado_Apellido = :lavado_Apellido, lavado_Token = :lavado_Token, lavado_Reservacion = :lavado_Reservacion, lavado_Tipo = :lavado_Tipo, lavado_Img = :lavado_Img WHERE lavado_Id = :lavado_Id";
+    $updateSql = "UPDATE carwash SET lavado_Nombre = :lavado_Nombre, lavado_Apellido = :lavado_Apellido, lavado_Token = :lavado_Token, lavado_Reservacion = :lavado_Reservacion, lavado_Tipo = :lavado_Tipo, lavado_Img = :lavado_Img , lavado_Telefono =:lavado_Telefono, total = :total WHERE lavado_Id = :lavado_Id";
     return self::executeNonQuery($updateSql, [
       "lavado_Nombre" => $lavado_Nombre,
       "lavado_Apellido" => $lavado_Apellido,
@@ -98,6 +104,8 @@ class CarWash extends Table
       "lavado_Reservacion" => $lavado_Reservacion,
       "lavado_Tipo" => $lavado_Tipo,
       "lavado_Img" => $lavado_Img,
+      "lavado_Telefono" => $lavado_Telefono,
+      "total" => $total,
       "lavado_Id" => $lavado_Id
     ]);
   }

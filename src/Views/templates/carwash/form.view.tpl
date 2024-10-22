@@ -1,4 +1,3 @@
-
 <section class="Lista_Contenedor">
   <h2>{{modeDsc}}</h2>
   <form class="Lista_Formulario" action="index.php?page=CarWash_CarWashForm&mode={{mode}}&lavado_Id={{lavado_id}}"
@@ -14,6 +13,11 @@
         <input type="text" name="lavado_id" id="lavado_id" value="{{lavado_id}}" readonly>
       </div>
       <div>
+        <label for="lavado_token">Token de Lavado</label>
+        <!-- Mostrar el token pero con readonly para que no sea editable -->
+        <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
+      </div>
+      <div>
         <label for="lavado_nombre">Nombre</label>
         <input type="text" name="lavado_nombre" id="lavado_nombre" value="{{lavado_nombre}}" {{isReadOnly}} required
           autofocus>
@@ -24,17 +28,10 @@
           required>
       </div>
       <div>
-        <label for="lavado_token">Token de Lavado</label>
-        <!-- Mostrar el token pero con readonly para que no sea editable -->
-        <input type="text" id="lavado_token" name="lavado_token" value="{{lavado_token}}" readonly required>
-      </div>
-      <div style="display: none;">
-        <label for="lavado_reservacion">Reservación</label>
-        <select name="lavado_reservacion" id="lavado_reservacion" {{isReadOnly}}>
-          {{foreach horasReservacion}}
-          <option value="{{key}}" {{selected}}>{{values}}</option>
-          {{endfor horasReservacion}}
-        </select>
+        <label for="lavado_Telefono">Teléfono</label>
+        <input type="number" id="lavado_Telefono" name="lavado_Telefono" value="{{lavado_Telefono}}" {{readonly}}
+          required min="10000000" oninput="validatePhone()">
+        <span id="error-message" style="color: red; display: none;">El teléfono debe tener al menos 8 dígitos.</span>
       </div>
       <div>
         <label for="lavado_tipo">Estado</label>
@@ -44,6 +41,15 @@
           {{endfor tipoOpciones}}
         </select>
       </div>
+      <div style="display: none;">
+        <label for="lavado_reservacion">Reservación</label>
+        <select name="lavado_reservacion" id="lavado_reservacion" {{isReadOnly}}>
+          {{foreach horasReservacion}}
+          <option value="{{key}}" {{selected}}>{{values}}</option>
+          {{endfor horasReservacion}}
+        </select>
+      </div>
+
       <div>
         <label for="lavado_img">Imagen del Pago</label>
         <input type="file" name="lavado_img" id="lavado_img" accept="image/*" {{isReadOnly}} required>
@@ -71,3 +77,17 @@
     </div>
   </form>
 </section>
+
+<script>
+  function validatePhone() {
+    const phoneInput = document.getElementById('lavado_Telefono');
+    const errorMessage = document.getElementById('error-message');
+
+    // Comprobar si el número tiene menos de 8 dígitos
+    if (phoneInput.value.length < 8) {
+      errorMessage.style.display = 'inline';
+    } else {
+      errorMessage.style.display = 'none';
+    }
+  }
+</script>

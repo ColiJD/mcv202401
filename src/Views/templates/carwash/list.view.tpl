@@ -6,6 +6,7 @@
         <th>ID</th>
         <th class="disable">Nombre</th>
         <th>Token</th>
+        <th class="disable">Telefono</th>
         <th>Tipo</th>
         <th>
           {{if carwash_new_enable}}
@@ -20,6 +21,7 @@
         <th>{{lavado_Id}}</th>
         <th class="disable">{{lavado_Nombre}} {{lavado_Apellido}}</th>
         <th>{{lavado_Token}}</th>
+        <th class="disable">{{lavado_Telefono}}</th>
         <th>{{lavado_Tipo}}</th>
         <th>
           <a href="index.php?page=CarWash_CarWashForm&mode=DSP&lavado_Id={{lavado_Id}}">Ver</a>
