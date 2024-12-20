@@ -47,7 +47,7 @@ td {
     word-wrap: break-word;
     padding: 0.1rem;
     /* Espaciado interno en celdas */
-    text-align: center;
+    text-align: left;
     /* Alineación del texto en celdas */
     border: 1px solid #ddd;
     

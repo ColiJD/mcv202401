@@ -17,26 +17,87 @@
     margin-top: 2rem;
     padding: 1.2rem;
     background-color: #FFF;
+    outline: 2px solid white;
+    z-index: 1;
+    
+
 
 }
+
+
 
 .inicio img {
     position: relative;
 
-
-
 }
 
-.inicio a {
+.button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
-    width: 80%;
-    margin-bottom: 0;
-
-
-}
+    justify-content: center;
+    padding: 12px 28px;
+    background-color: var(--primary-bg300);
+    border: 8px solid #c0dfff;
+    color: white;
+    gap: 8px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 50%;
+  }
+  .text {
+    font-size: 1.7em;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .button:hover{
+    color: #fff;
+  }
+  .svg {
+    padding-top: 5px;
+    height: 100%;
+    width: fit-content;
+  }
+  .svg svg {
+    width: 50px;
+    height: 30px;
+  }
+  .button:hover {
+    border: 8px solid #b1d8ff;
+    background-color: var(--primary-bg300);
+  }
+  .button:active {
+    border: 5px solid #c0dfff;
+  }
+  .button:hover .svg svg {
+    animation: jello-vertical 0.9s both;
+    transform-origin: left;
+  }
+  
+  @keyframes jello-vertical {
+    0% {
+      transform: scale3d(1, 1, 1);
+    }
+    30% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+    40% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+    50% {
+      transform: scale3d(0.85, 1.15, 1);
+    }
+    65% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+    75% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+    100% {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
 
 
 @media screen and (min-width: 768px) {

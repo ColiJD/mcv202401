@@ -11,7 +11,6 @@ CREATE TABLE CarWash (
     total DOUBLE NOT NULL
 ) COMMENT 'Tabla para almacenar información de las reservaciones del carwash';
 
-DROP TABLE carwash;
 -- Agregar restricción de unicidad para el campo lavado_Token
 ALTER TABLE carwash
 ADD CONSTRAINT unique_reservation UNIQUE (lavado_Token);
@@ -33,6 +32,10 @@ END //
 DELIMITER;
 
 -- Crear un evento programado que llama al procedimiento borrar_carwash diariamente
-CREATE EVENT IF NOT EXISTS ejecutar_borrar_carwash_diario ON SCHEDULE EVERY 1 DAY STARTS '2024-10-22 00:00:00' -- Ajusta la fecha a partir de cuando quieras que inicie
+-- Crear un evento programado que llama al procedimiento borrar_carwash diariamente
+CREATE EVENT IF NOT EXISTS ejecutar_borrar_carwash_diario
+ON SCHEDULE EVERY 1 DAY STARTS '2024-10-22 00:00:00'  -- Ajusta la fecha de inicio
 DO
-CALL borrar_carwash ();
+BEGIN
+    CALL borrar_carwash();  -- Asegúrate de que el procedimiento existe y está correcto
+END;

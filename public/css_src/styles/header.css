@@ -72,6 +72,25 @@
     flex-direction: row;
 }
 
+.header_detalles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_img {
+    width: 50px;
+    height: 50px;
+    margin-left: 0.75rem;
+    border-radius: 50%;
+}
+.footer_img{
+    width: 25px;
+    height: 25px;
+    margin-left: 0.75rem;
+    border-radius: 50%;
+}
+
 @media (max-width: 768px) {
 
     /* Mostrar el ícono de menú en pantallas pequeñas */
@@ -117,5 +136,11 @@
 
     #toggle_menu:checked+.menu_toggle_icon .hmb.dgn.pt-2 {
         transform: rotate(-45deg) translate(5px, -5px);
+    }
+}
+@media (max-width: 375px) {
+    .header_detalles{
+        width: 75%;
+        justify-content: space-around;
     }
 }

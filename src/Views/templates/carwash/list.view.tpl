@@ -3,7 +3,7 @@
   <table class="list_Tabla">
     <thead class="tabla_Cavezal">
       <tr>
-        <th>ID</th>
+        <th class="disable">ID</th>
         <th class="disable">Nombre</th>
         <th>Token</th>
         <th class="disable">Telefono</th>
@@ -18,7 +18,7 @@
     <tbody>
       {{foreach carwash}}
       <tr>
-        <th>{{lavado_Id}}</th>
+        <th class="disable">{{lavado_Id}}</th>
         <th class="disable">{{lavado_Nombre}} {{lavado_Apellido}}</th>
         <th>{{lavado_Token}}</th>
         <th class="disable">{{lavado_Telefono}}</th>

@@ -16,7 +16,7 @@
     font-size: 1.4rem;
     border-bottom: 3px solid var(--primary-bg);
     display: inline-block;
-    color: var(--primary-bg300);
+    color: var(--info);
 }
 
 .Lista_Formulario {

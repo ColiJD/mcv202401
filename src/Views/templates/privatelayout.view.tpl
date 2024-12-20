@@ -21,7 +21,7 @@
       <div class="hmb hrz"></div>
       <div class="hmb dgn pt-2"></div>
     </label>
-    
+
     <nav id="menu">
       <ul class="header_lista">
         <li><a href="index.php?page={{PRIVATE_DEFAULT_CONTROLLER}}"><i class="fas fa-home"></i>&nbsp;Inicio</a></li>
@@ -31,13 +31,37 @@
         <li><a href="index.php?page=sec_logout"><i class="fas fa-sign-out-alt"></i>&nbsp;Salir</a></li>
       </ul>
     </nav>
-    <h2>Tres Valles</h2>
+    <div class="header_detalles">
+      <h2>Tres Valles</h2>
+      <img class="header_img"
+        src="https://productoresdeazucarhonduras.com/wp-content/uploads/elementor/thumbs/2-1-ptr6xjo4tghogauxsqkxxwrk395sc23efl66d3570w.png"
+        alt="MDN" />
+    </div>
+
   </header>
   <main>
     {{{page_content}}}
   </main>
   <footer>
-    <div>Todo los Derechos Reservados {{~CURRENT_YEAR}} &copy;</div>
+    <div class="footer_detalles">
+      <div>Azucarera Tres Valles {{~CURRENT_YEAR}}</div>
+      <img class="footer_img"
+        src="https://productoresdeazucarhonduras.com/wp-content/uploads/elementor/thumbs/2-1-ptr6xjo4tghogauxsqkxxwrk395sc23efl66d3570w.png"
+        alt="MDN" />
+    </div>
+    <div class="footer_colaboradores">
+      <div class="cotenedor">
+        <div class="colaboradores_div">
+          <p>Colaboradores:</p>
+          <ul>
+            <li>Rodrigo Sanchez</li>
+            <li>Jonathan Alvarez</li>
+            <li>Jose Colindres</li>
+          </ul>
+        </div>
+        <p>Tecnología de la información</p>
+      </div>
+    </div>
   </footer>
   {{foreach EndScripts}}
   <script src="/{{~BASE_DIR}}/{{this}}"></script>

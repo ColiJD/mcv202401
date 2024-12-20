@@ -15,7 +15,7 @@
 
   --secondary-text: #000;
   --secondary-bg: #e0da9f;
-  --secondary-bg300: #9cc4ae;
+  --secondary-bg300: #d3d3d3;
   --secondary-bg800: #849dc7;
 
   --primary-action-bg: #25a8ff;
@@ -40,14 +40,15 @@ body {
   min-height: 100vh;
   /* Altura mínima igual a la altura de la ventana */
   margin: 0;
-  
+
 }
 
 main {
   flex: 1;
   margin: 0;
   padding: 0;
-  background-color: var(--secondary-bg300);
+  background-color: #ccd8eb;
+  min-height: 70vh;
   /* Esto asegura que el contenido principal ocupe el espacio disponible */
 }
 
@@ -55,3 +56,8 @@ footer {
   align-content: flex-end;
 }
 
+@media screen and (min-width: 1024px) {
+  main {
+    min-height: 75vh;
+  }
+}
