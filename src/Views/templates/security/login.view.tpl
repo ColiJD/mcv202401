@@ -18,6 +18,7 @@
         <div>
           <label for="txtPswd">Contraseña</label>
           <input type="password" id="txtPswd" name="txtPswd" value="{{txtPswd}}" />
+          <button type="button" id="togglePassword">Ver</button>
           {{if errorPswd}}
           <div>{{errorPswd}}</div>
           {{endif errorPswd}}
@@ -32,5 +33,32 @@
         </div>
       </div>
     </section>
-  </form>
+  </form> 
 </section>
+
+<script>
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordField = document.getElementById('txtPswd');
+
+  togglePassword.addEventListener('click', () => {
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    togglePassword.textContent = type === 'password' ? 'Ver' : 'Ocultar';
+  });
+</script>
+
+<style>
+#togglePassword {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+#togglePassword:hover {
+    text-decoration: underline;
+}
+
+</style>
